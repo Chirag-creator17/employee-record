@@ -1,0 +1,182 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+int c=-1;
+class Employee
+{
+    int eid[10];
+    char empname[10][20];
+    float salary[10];
+public:
+    void get();
+    void putData();
+    void update();
+    void del();
+};
+void Employee :: get()
+{
+    c++;
+    cout << "Enter employee id : ";
+    cin >> eid[c];
+    fflush(stdin);
+    cout << "Enter employee name : ";
+    gets(empname[c]);
+    cout << "Enter salary : ";
+    cin >> salary[c];
+    cout<<endl;
+}
+void Employee :: putData()
+ {
+    int p,i;
+    cout << "Enter employee number : ";
+    cin >> p;
+    cout<<endl;
+    for ( i=0 ; i<=c ; i++)
+    {
+        if (eid[i] == p)
+        {
+            break;
+        }
+    }
+    cout << "Employee id : " << eid[i] << endl;
+    cout<<endl;
+    cout << "Name of employee : " << empname[i] << endl;
+    cout<<endl;
+    cout << "Salary : " << salary[i] << endl;
+    cout<<endl;
+
+}
+void Employee :: update()
+{
+    int e,i,u=1;
+    cout << "Enter employee number : ";
+    cin >> e;
+    cout<<endl;
+    for ( i=0 ; i<=c ; i++)
+    {
+        if (eid[i] == e)
+        {
+            break;
+        }
+    }
+    while (u<4)
+    {
+        cout << "1:update employee id" << endl << "2:update employee name" << endl << "3:update salary" << endl << "4:exit" << endl;
+        cout << "Enter your choice for updation : ";
+        cin >> u;
+        cout<<endl;
+        switch(u)
+            {
+        case 1:
+            {
+                int h;
+                cout << "Enter new employee id : ";
+                cin >> h;
+                cout<<endl;
+                eid[i]=h;
+                break;
+            }
+        case 2:
+            {
+                char n[10];
+                int j;
+                fflush(stdin);
+                cout << "Enter new employee name : ";
+                gets(n);
+                cout<<endl;
+                for(j=0;n[j]!='\0';j++)
+                empname[i][j]=n[j];
+                empname[i][j]='\0';
+                break;
+            }
+        case 3:
+            {
+                int s;
+                cout << "Enter new employee salary : ";
+                cin >> s;
+                cout<<endl;
+                salary[i]=s;
+                break;
+            }
+        case 4:
+            {
+                break;
+            }
+        default :
+            {
+                cout << "Wrong Choice" << endl;
+                break;
+            }
+        }
+    }
+
+
+}
+void Employee :: del()
+{
+    int d,i;
+    cout << "Enter employee number : ";
+    cin >> d;
+    cout<<endl;
+    for ( i=0; i<=c ; i++)
+    {
+        if (eid[i] == d)
+        {
+            break;
+        }
+    }
+    eid[i] = 0;
+    for(int k=0;empname[i][k]!='\0';k++)
+    empname[i][k] = NULL;
+    salary[i] = 0;
+}
+
+
+int main()
+{
+    int l;
+    Employee x;
+    while (1)
+    {
+        cout << "************************************************" << endl;
+        cout << "1:To insert value" << endl << "2:To update value" << endl << "3:To delete record" << endl << "4:To display record" << endl << "5:exit" << endl ;
+        cout<<"Enter your choice : ";
+        cin >> l;
+        cout<<endl;
+        switch (l)
+        {
+        case 1:
+            {
+                x.get();
+                break;
+            }
+        case 2:
+            {
+                x.update();
+                break;
+            }
+        case 3:
+            {
+                x.del();
+                break;
+            }
+        case 4:
+            {
+                x.putData();
+                break;
+            }
+        case 5:
+            {
+                exit(0);
+            }
+        default:
+            {
+                cout << "wrong choice" <<endl;
+                break;
+            }
+
+        }
+    }
+
+    return 0;
+}
